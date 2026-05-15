@@ -23,7 +23,7 @@
       The "rel" tells the browser this is a stylesheet.
       The "href" is the path to the CSS file.
     -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./pages/style.css" />
 
     <!-- Google Font: Nunito (clean, friendly font for a shop) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -59,9 +59,9 @@
         <ul>
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="index.html#products">Products</a></li>
-          <li><a href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a></li>
-          <li><a href="signin.html">Sign In</a></li>
-          <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+          <li><a href="./pages/cart.html">🛒 Cart (<span id="cart-count">0</span>)</a></li>
+          <li><a href="./pages/signin.html">Sign In</a></li>
+          <li><a href="./pages/signup.html" class="btn-signup">Sign Up</a></li>
         </ul>
       </nav>
 
@@ -344,6 +344,32 @@
 
 
 
+          <!-- ===== PRODUCT 4: LED Desk Lamp ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/LED-Desk-Lamp.webp  " alt="LED Desk Lamp">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">LED Desk Lamp</h3>
+              <p class="product-description">3 brightness levels, USB charging port, eye-care light.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="review-count">(87 reviews)</span>
+              </div>
+              <p class="product-price">$21.99</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="4"
+                data-name="LED Desk Lamp"
+                data-price="21.99"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+
           <!-- ===== PRODUCT 5: Backpack ===== -->
           <div class="product-card">
             <div class="product-image">
@@ -448,6 +474,158 @@
             </div>
           </div>
 
+
+
+          
+          <!-- ===== PRODUCT 1: Wireless Earbuds ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/wireless-earbud-pro.webp" alt="Wireless Earbuds Pro">
+              <svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" width="200" height="180">
+                <rect width="200" height="180" fill="#e8f0fe" rx="10" />
+                <circle cx="70" cy="90" r="28" fill="#4f6ef7" />
+                <circle cx="130" cy="90" r="28" fill="#4f6ef7" />
+                <circle cx="70" cy="90" r="14" fill="#1a3ec4" />
+                <circle cx="130" cy="90" r="14" fill="#1a3ec4" />
+                <line x1="70" y1="62" x2="70" y2="40" stroke="#4f6ef7" stroke-width="4" />
+                <line x1="130" y1="62" x2="130" y2="40" stroke="#4f6ef7" stroke-width="4" />
+                <text x="100" y="160" text-anchor="middle" fill="#4f6ef7" font-size="11">Wireless Earbuds</text>
+              </svg>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Wireless Earbuds Pro</h3>
+              <p class="product-description">Noise cancelling, 24hr battery life. Crystal clear sound.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(128 reviews)</span>
+              </div>
+              <p class="product-price">$29.99</p>
+              <!-- 
+                The "data-" attributes store information about the product.
+                JavaScript will read these values when "Add to Cart" is clicked.
+              -->
+              <button
+                class="btn-add-to-cart"
+                data-id="1"
+                data-name="Wireless Earbuds Pro"
+                data-price="29.99"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+
+
+
+          
+          <!-- ===== PRODUCT 2: Smart Watch ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/smart-watch.webp" alt="">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Smart Watch X200</h3>
+              <p class="product-description">Track fitness, notifications & sleep. Water resistant.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="review-count">(94 reviews)</span>
+              </div>
+              <p class="product-price">$49.99</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="2"
+                data-name="Smart Watch X200"
+                data-price="49.99"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== PRODUCT 3: Running Shoes ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/AeroRun-Shoes.webp" alt="">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">AeroRun Shoes</h3>
+              <p class="product-description">Lightweight foam sole. Breathable mesh upper. Sizes 36–46.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(212 reviews)</span>
+              </div>
+              <p class="product-price">$39.99</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="3"
+                data-name="AeroRun Shoes"
+                data-price="39.99"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+
+          <!-- ===== PRODUCT 4 : Wireless Earbuds ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/airpods_pro_3.webp" alt="Wireless Earbuds Pro">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Wireless Earbuds Pro</h3>
+              <p class="product-description">Noise cancelling, 48hr battery life. Crystal clear sound.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(280 reviews)</span>
+              </div>
+              <p class="product-price">$45.00</p>
+              <!-- 
+                The "data-" attributes store information about the product.
+                JavaScript will read these values when "Add to Cart" is clicked.
+              -->
+              <button
+                class="btn-add-to-cart"
+                data-id="1"
+                data-name="Wireless Earbuds Pro"
+                data-price="45.00"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+
+
+          <!-- ===== PRODUCT 4: LED Desk Lamp ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/LED-Desk-Lamp.webp" alt="LED Desk Lamp">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">LED Desk Lamp</h3>
+              <p class="product-description">3 brightness levels, USB charging port, eye-care light.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="review-count">(87 reviews)</span>
+              </div>
+              <p class="product-price">$21.99</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="4"
+                data-name="LED Desk Lamp"
+                data-price="21.99"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
 
 
 
