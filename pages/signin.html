@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In — zShop</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+
+    <!-- ============================================================
+      HEADER — same on every page for consistent navigation
+    ============================================================ -->
+    <header class="site-header">
+
+      <div class="logo">
+        <a href="index.html">🛍️ zShop</a>
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#products">Products</a></li>
+          <li><a href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a></li>
+          <li><a href="signin.html" class="active">Sign In</a></li>
+          <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger-btn">☰</button>
+
+    </header>
+
+
+    <!-- ============================================================
+      MAIN — centres the form card on the screen
+    ============================================================ -->
+    <main class="form-page">
+
+      <div class="form-card">
+
+        <h1>Welcome Back!</h1>
+        <p class="form-subtitle">Sign in to your zShop account.</p>
+
+        <!--
+          SIGN IN FORM
+          onsubmit calls handleSignIn() from main.js.
+          "event" is passed so JS can call event.preventDefault()
+          and stop the page from refreshing on submit.
+        -->
+        <form onsubmit="handleSignIn(event)">
+
+          <!-- ===== EMAIL ADDRESS ===== -->
+          <div class="form-group">
+            <!--
+              The "for" attribute on <label> must match the "id"
+              on the <input> so they are linked together.
+              This means clicking the label also focuses the input.
+            -->
+            <label for="signin-email">Email Address</label>
+
+            <input
+              type="email"
+              id="signin-email"
+              name="email"
+              placeholder="Enter your email"
+            />
+
+            <!-- Hidden error message — shown by JS if email is wrong -->
+            <span class="form-error" id="error-signin-email"></span>
+          </div>
+
+          <!-- ===== PASSWORD ===== -->
+          <div class="form-group">
+            <label for="signin-password">Password</label>
+
+            <!--
+              type="password" masks the characters the user types.
+              This is a built-in browser feature — no CSS or JS needed.
+            -->
+            <input
+              type="password"
+              id="signin-password"
+              name="password"
+              placeholder="Enter your password"
+            />
+
+            <span class="form-error" id="error-signin-password"></span>
+          </div>
+
+          <!-- ===== REMEMBER ME CHECKBOX ===== -->
+          <div class="form-group checkbox-group">
+            <input
+              type="checkbox"
+              id="signin-remember"
+              name="remember"
+            />
+            <label for="signin-remember" class="checkbox-label">
+              Remember me on this device
+            </label>
+          </div>
+
+          <!-- ===== SUBMIT BUTTON ===== -->
+          <button type="submit" class="btn-form-submit">
+            Sign In
+          </button>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="divider">or</div>
+
+        <!-- Link to sign up if they don't have an account -->
+        <p class="form-switch-text">
+          Don't have an account yet?
+          <a href="signup.html">Create one here</a>
+        </p>
+
+        <p class="form-switch-text" style="margin-top: 10px;">
+          <a href="index.html">← Back to Shop</a>
+        </p>
+
+      </div>
+
+    </main>
+
+
+    <!-- ============================================================
+      FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+      <div class="footer-content">
+
+        <div class="footer-brand">
+          <h3>🛍️ zShop</h3>
+          <p>A learning project to teach HTML, CSS, and JavaScript. Built step by step.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="signin.html">Sign In</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>📧 hello@shoplearn.com</p>
+          <p>📞 +1 (800) 123-4567</p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p></p>
+      </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+  </body>
+
+</html>

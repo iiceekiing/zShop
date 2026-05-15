@@ -1,0 +1,1254 @@
+/*
+  ================================================================
+  SHOPLEARN — style.css
+  ================================================================
+  This file controls ALL the visual appearance of the website.
+  If you unlink this file from index.html, the page will look
+  like plain text — no colors, no layout, no fonts. That is
+  perfectly normal! That is what raw HTML looks like.
+
+  HOW CSS WORKS:
+  selector { property: value; }
+
+  The SELECTOR picks which HTML element to style.
+  The PROPERTY is what you want to change (color, size, etc).
+  The VALUE is what you want it to look like.
+
+  Example:
+  h1 { color: blue; }
+  — This makes every <h1> text blue.
+  ================================================================
+*/
+
+
+/* ================================================================
+   1. CSS VARIABLES (Custom Properties)
+   ================================================================
+   Variables let us store values and reuse them everywhere.
+   If we want to change the main blue color, we change it ONCE here
+   and it updates everywhere on the page automatically.
+   Variables are defined inside :root which means "the whole page".
+*/
+
+:root {
+  --color-primary: #4f6ef7;       /* Main blue used for buttons, links */
+  --color-primary-dark: #3a56d4;  /* Darker blue for hover effects */
+  --color-accent: #ff6b35;        /* Orange accent for highlights */
+  --color-background: #f8f9fe;    /* Very light blue-grey page background */
+  --color-white: #ffffff;
+  --color-text: #1e1e2e;          /* Dark text colour */
+  --color-text-light: #6b7280;    /* Grey text for descriptions */
+  --color-border: #e5e7eb;        /* Light grey for borders */
+  --color-success: #22c55e;       /* Green for success messages */
+  --color-star: #f59e0b;          /* Gold/amber for star ratings */
+
+  --font-main: 'Nunito', sans-serif;
+
+  --shadow-small: 0px 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0px 4px 20px rgba(0, 0, 0, 0.12);
+  --shadow-large: 0px 8px 32px rgba(0, 0, 0, 0.16);
+
+  --border-radius: 12px;
+  --border-radius-small: 6px;
+  --border-radius-large: 20px;
+}
+
+
+/* ================================================================
+   2. RESET & BASE STYLES
+   ================================================================
+   Different browsers have their own default styles.
+   A "reset" removes those defaults so our page looks the same
+   everywhere (Chrome, Firefox, Safari, etc.).
+*/
+
+/* This selects EVERY single element on the page */
+* {
+  margin: 0;              /* Remove default spacing outside elements */
+  padding: 0;             /* Remove default spacing inside elements */
+  box-sizing: border-box; /* Makes sizing more predictable */
+}
+
+/* Base styles for the whole page */
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-size: 16px;
+  line-height: 1.6;       /* Space between lines of text */
+}
+
+/* Remove bullet points from ALL lists on the page */
+ul {
+  list-style: none;
+}
+
+/* Remove the underline from ALL links on the page */
+a {
+  text-decoration: none;
+  color: inherit;         /* Inherit means "use the same color as the parent" */
+}
+
+/* Make images flexible so they never overflow their container */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Make SVG images also flexible */
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ================================================================
+   3. REUSABLE UTILITY CLASS
+   ================================================================
+   A "container" limits the width of content so it doesn't stretch
+   too wide on big screens. We centre it with "margin: 0 auto".
+*/
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+/* ================================================================
+   4. HEADER & NAVIGATION
+   ================================================================
+   The <header> sticks to the top of the page as the user scrolls.
+*/
+
+.site-header {
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-small);
+  padding: 16px 40px;
+  display: flex;                /* Flexbox lines children up in a row */
+  align-items: center;          /* Align them vertically in the middle */
+  justify-content: space-between; /* Push logo left, nav right */
+  position: sticky;             /* Sticks to the top when scrolling */
+  top: 0;                       /* Distance from the top of the screen */
+  z-index: 100;                 /* Keeps header above other content */
+}
+
+/* Logo text */
+.logo a {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: -0.5px;
+}
+
+.logo a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Navigation links container */
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 8px;                     /* Space between each nav item */
+}
+
+/* Each individual nav link */
+.main-nav ul li a {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+  padding: 8px 14px;
+  border-radius: var(--border-radius-small);
+  transition: background-color 0.2s, color 0.2s; /* Smooth hover effect */
+}
+
+/* When mouse hovers over a nav link */
+.main-nav ul li a:hover {
+  background-color: #eef0fd;
+  color: var(--color-primary);
+}
+
+/* The currently active page link */
+.main-nav ul li a.active {
+  color: var(--color-primary);
+  background-color: #eef0fd;
+}
+
+/* Sign Up button in the nav (looks different from other links) */
+.main-nav ul li a.btn-signup {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 8px 18px;
+  border-radius: 20px;
+}
+
+.main-nav ul li a.btn-signup:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* The hamburger menu icon — hidden on big screens, shown on mobile */
+.hamburger {
+  display: none;            /* Hidden by default (desktop) */
+  font-size: 26px;
+  background: none;         /* No background colour */
+  border: none;             /* No border */
+  cursor: pointer;          /* Shows a hand icon when you hover */
+  color: var(--color-text);
+}
+
+
+/* ================================================================
+   5. HERO SECTION
+   ================================================================
+   The big banner at the top of the homepage.
+*/
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 70px 60px;
+  background: linear-gradient(135deg, #eef1ff 0%, #faf5ff 50%, #fff5f0 100%);
+  max-width: 1200px;
+  margin: 40px auto;
+  border-radius: var(--border-radius-large);
+}
+
+/* The left side text block */
+.hero-text {
+  flex: 1;                  /* Takes up available space */
+  max-width: 520px;
+}
+
+.hero-text h1 {
+  font-size: 46px;
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.hero-text p {
+  font-size: 17px;
+  color: var(--color-text-light);
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+/* Hero "Shop Now" button */
+.btn-hero {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 30px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-hero:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);  /* Lifts the button slightly on hover */
+}
+
+/* The right side image */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image svg {
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-large);
+  max-width: 380px;
+  width: 100%;
+}
+
+
+/* ================================================================
+   6. CATEGORIES SECTION
+   ================================================================
+*/
+
+.categories {
+  max-width: 1200px;
+  margin: 20px auto 50px auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.categories h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 24px;
+}
+
+/* The row of category cards */
+.category-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;        /* Wrap to next line on small screens */
+  gap: 16px;
+}
+
+/* Each individual category card */
+.category-card {
+  background-color: var(--color-white);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 20px 28px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  min-width: 100px;
+  text-align: center;
+}
+
+.category-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-4px);
+}
+
+.category-icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.category-card p {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+
+/* ================================================================
+   7. PRODUCTS SECTION
+   ================================================================
+*/
+
+.products-section {
+  max-width: 1200px;
+  margin: 0 auto 60px auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.products-section h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: var(--color-text-light);
+  margin-bottom: 36px;
+}
+
+/* 
+  PRODUCT GRID
+  This creates a grid layout.
+  "repeat(auto-fill, minmax(250px, 1fr))" means:
+  — Create as many columns as fit
+  — Each column is at least 250px wide
+  — They share space equally
+*/
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+/* Each product card */
+.product-card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-small);
+  border: 1px solid var(--color-border);
+  overflow: hidden;           /* Clips anything that goes outside the card */
+  transition: box-shadow 0.25s, transform 0.25s;
+  text-align: left;
+}
+
+.product-card:hover {
+  box-shadow: var(--shadow-large);
+  transform: translateY(-6px);
+}
+
+/* Product image container */
+.product-image {
+  background-color: #f4f6ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.product-image svg {
+  max-height: 180px;
+  object-fit: contain;
+}
+
+/* Product info area below the image */
+.product-info {
+  padding: 16px 18px 20px 18px;
+}
+
+.product-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.product-description {
+  font-size: 13px;
+  color: var(--color-text-light);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Star ratings */
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.stars {
+  color: var(--color-star);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.review-count {
+  font-size: 12px;
+  color: var(--color-text-light);
+}
+
+/* Price */
+.product-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 14px;
+}
+
+/* "Add to Cart" button on each product */
+.btn-add-to-cart {
+  display: block;               /* Takes full width */
+  width: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--font-main);
+  padding: 11px 0;
+  border: none;                 /* No border */
+  border-radius: var(--border-radius-small);
+  cursor: pointer;              /* Hand pointer on hover */
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.btn-add-to-cart:hover {
+  background-color: var(--color-primary-dark);
+  transform: scale(1.02);
+}
+
+.btn-add-to-cart:active {
+  transform: scale(0.98);       /* Slight press effect on click */
+}
+
+
+/* ================================================================
+   8. PROMO BANNER SECTION
+   ================================================================
+*/
+
+.promo-banner {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #7c3aed 100%);
+  color: var(--color-white);
+  padding: 60px 40px;
+  text-align: center;
+  margin: 0 0 60px 0;
+}
+
+.promo-content h2 {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.promo-content p {
+  font-size: 17px;
+  margin-bottom: 28px;
+  opacity: 0.9;
+}
+
+.btn-promo {
+  display: inline-block;
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 36px;
+  border-radius: 30px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-promo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ================================================================
+   9. FOOTER
+   ================================================================
+*/
+
+.site-footer {
+  background-color: var(--color-text);   /* Dark background */
+  color: #d1d5db;
+  padding: 60px 60px 0 60px;
+}
+
+.footer-content {
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #374151;
+}
+
+.footer-brand {
+  flex: 2;
+  min-width: 200px;
+}
+
+.footer-brand h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-white);
+  margin-bottom: 10px;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #9ca3af;
+}
+
+.footer-links,
+.footer-contact {
+  flex: 1;
+  min-width: 140px;
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+  color: #9ca3af;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.footer-links ul li a:hover {
+  color: var(--color-white);
+}
+
+.footer-contact p {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+/* Bottom strip with copyright */
+.footer-bottom {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+
+/* ================================================================
+   10. TOAST NOTIFICATION
+   ================================================================
+   The small pop-up message that appears when you add an item to cart.
+   It starts hidden (opacity: 0, pointer-events: none).
+   JavaScript adds the class "show" to make it visible.
+*/
+
+.toast {
+  position: fixed;              /* Always visible on screen, doesn't scroll */
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--color-success);
+  color: var(--color-white);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 24px;
+  border-radius: 30px;
+  box-shadow: var(--shadow-large);
+  opacity: 0;                   /* Hidden by default */
+  pointer-events: none;         /* Can't be clicked when hidden */
+  transform: translateY(20px);  /* Starts slightly below */
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* When JavaScript adds the "show" class, the toast appears */
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+
+/* ================================================================
+   11. FORM STYLES
+   ================================================================
+   Shared styles used on the Sign In and Sign Up pages.
+*/
+
+.form-page {
+  min-height: 100vh;            /* Fill the whole screen height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #eef1ff 0%, #faf5ff 100%);
+}
+
+.form-card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-large);
+  padding: 48px 44px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.form-card h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.form-card .form-subtitle {
+  font-size: 14px;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* Each label + input pair */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;               /* Label on its own line */
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: var(--font-main);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-small);
+  color: var(--color-text);
+  background-color: #fafafa;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Input gets a blue border when the user clicks on it */
+.form-group input:focus {
+  outline: none;                /* Remove default browser outline */
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(79, 110, 247, 0.12);
+  background-color: var(--color-white);
+}
+
+/* The main submit button on forms */
+.btn-form-submit {
+  display: block;
+  width: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--font-main);
+  padding: 14px 0;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.btn-form-submit:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+/* The small "Already have an account? Sign in" link */
+.form-switch-text {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-text-light);
+  margin-top: 24px;
+}
+
+.form-switch-text a {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* Error message (shown by JavaScript when form is wrong) */
+.form-error {
+  color: #ef4444;
+  font-size: 13px;
+  margin-top: 6px;
+  display: none;                /* Hidden until JavaScript shows it */
+}
+
+/*
+  Checkbox row — puts the tick box and its label side by side.
+  Used on the Sign Up page for the Terms & Conditions tick box.
+*/
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--color-primary); /* Colours the tick box itself */
+  cursor: pointer;
+  flex-shrink: 0;                     /* Stops the box from shrinking */
+}
+
+.checkbox-label {
+  font-size: 13px;
+  color: var(--color-text-light);
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.checkbox-label a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+
+/* Divider line with "or" text between sections */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+  color: var(--color-text-light);
+  font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+
+/* ================================================================
+   12. CART PAGE STYLES
+   ================================================================
+*/
+
+.cart-page {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 30px;
+}
+
+.cart-page h1 {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: var(--color-text);
+}
+
+/* The list of items in the cart */
+.cart-items-list {
+  display: flex;
+  flex-direction: column;     /* Stack items vertically */
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+/* Each individual item row in the cart */
+.cart-item {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: var(--shadow-small);
+}
+
+.cart-item-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+  flex: 1;
+}
+
+.cart-item-price {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-primary);
+  min-width: 80px;
+  text-align: right;
+}
+
+/* Quantity controls: minus button, number, plus button */
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  background-color: #eef0fd;
+  color: var(--color-primary);
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-btn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.qty-display {
+  font-size: 16px;
+  font-weight: 700;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Red remove button */
+.btn-remove {
+  background-color: #fee2e2;
+  color: #ef4444;
+  border: none;
+  border-radius: var(--border-radius-small);
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-main);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-remove:hover {
+  background-color: #ef4444;
+  color: var(--color-white);
+}
+
+/* Cart summary box at the bottom */
+.cart-summary {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 28px;
+  box-shadow: var(--shadow-small);
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 15px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cart-summary-row:last-of-type {
+  border-bottom: none;
+}
+
+.cart-summary-row.total {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-top: 6px;
+}
+
+/* Checkout button in cart */
+.btn-checkout {
+  display: block;
+  width: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 17px;
+  font-weight: 700;
+  font-family: var(--font-main);
+  padding: 16px 0;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.btn-checkout:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Message when cart is empty */
+.cart-empty-message {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--color-text-light);
+}
+
+.cart-empty-message p {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.cart-empty-message a {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+
+/* ================================================================
+   12b. CONTINUE SHOPPING LINK (Cart page)
+   ================================================================
+*/
+
+.continue-shopping {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.continue-shopping a {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+
+/* ================================================================
+   13. CHECKOUT PAGE STYLES
+   ================================================================
+*/
+
+/*
+  Two-column layout: form on the left, order summary on the right.
+  On mobile (see media query at the bottom) these stack vertically.
+*/
+.checkout-layout {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+/* Left column takes more space */
+.checkout-left {
+  flex: 2;
+  min-width: 0;
+}
+
+/* Right column is narrower */
+.checkout-right {
+  flex: 1;
+  min-width: 260px;
+}
+
+/*
+  form-row puts two inputs side by side (e.g. First + Last name).
+  On mobile the media query changes this to stacked (column).
+*/
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/* Small warning note inside the payment section */
+.checkout-note {
+  font-size: 13px;
+  color: #b45309;
+  background-color: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: var(--border-radius-small);
+  padding: 10px 14px;
+  margin-bottom: 18px;
+}
+
+/* Trust badges below the order summary */
+.trust-badges {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 18px 22px;
+  margin-top: 16px;
+}
+
+.trust-badges p {
+  font-size: 13px;
+  color: var(--color-text-light);
+  padding: 5px 0;
+  font-weight: 600;
+}
+
+/* Success icon on the order confirmation screen */
+.success-icon {
+  font-size: 72px;
+  margin-bottom: 20px;
+}
+
+.checkout-page {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 0 30px;
+}
+
+.checkout-page h1 {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: var(--color-text);
+}
+
+.checkout-section {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-small);
+}
+
+.checkout-section h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-border);
+  color: var(--color-text);
+}
+
+/* The order success message (shown after placing order) */
+.order-success {
+  display: none;                /* Hidden until JS shows it */
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.order-success h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-success);
+  margin-bottom: 12px;
+}
+
+.order-success p {
+  font-size: 16px;
+  color: var(--color-text-light);
+  margin-bottom: 24px;
+}
+
+.order-success a {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 700;
+  transition: background-color 0.2s;
+}
+
+.order-success a:hover {
+  background-color: var(--color-primary-dark);
+}
+
+
+/* ================================================================
+   14. RESPONSIVE DESIGN (Mobile Screens)
+   ================================================================
+   "@media" queries change styles based on the screen size.
+   Everything inside this block ONLY applies when the screen
+   is 768 pixels wide or less (tablets and phones).
+*/
+
+@media (max-width: 768px) {
+
+  /* Show the hamburger button on small screens */
+  .hamburger {
+    display: block;
+  }
+
+  /* Hide the nav links by default on mobile */
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-medium);
+    padding: 20px;
+    z-index: 99;
+  }
+
+  /* Show nav when it has the "open" class (added by JavaScript) */
+  .main-nav.open {
+    display: block;
+  }
+
+  .main-nav ul {
+    flex-direction: column;     /* Stack links vertically */
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .main-nav ul li a {
+    display: block;
+    padding: 12px 16px;
+  }
+
+  /* Adjust header padding */
+  .site-header {
+    padding: 16px 20px;
+  }
+
+  /* Stack hero section vertically on mobile */
+  .hero {
+    flex-direction: column;     /* Stack text and image on top of each other */
+    padding: 40px 24px;
+    margin: 20px 16px;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 30px;
+  }
+
+  .hero-text p {
+    font-size: 15px;
+  }
+
+  /* Fewer columns in the product grid on mobile */
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+
+  .categories,
+  .products-section {
+    padding: 0 16px;
+  }
+
+  /* Stack cart item rows vertically */
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Stack checkout columns vertically on mobile */
+  .checkout-layout {
+    flex-direction: column;
+  }
+
+  .checkout-right {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* Stack side-by-side form rows on mobile */
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .site-footer {
+    padding: 40px 24px 0 24px;
+  }
+
+}
+
+/* Extra small screens (phones under 400px) */
+@media (max-width: 400px) {
+
+  .product-grid {
+    grid-template-columns: 1fr;   /* Single column on tiny screens */
+  }
+
+  .form-card {
+    padding: 32px 24px;
+  }
+
+}

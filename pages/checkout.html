@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout — ShopLearn</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+
+    <!-- ============================================================
+      HEADER
+    ============================================================ -->
+    <header class="site-header">
+
+      <div class="logo">
+        <a href="index.html">🛍️ ShopLearn</a>
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#products">Products</a></li>
+          <li><a href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a></li>
+          <li><a href="signin.html">Sign In</a></li>
+          <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger-btn">☰</button>
+
+    </header>
+
+
+    <!-- ============================================================
+      MAIN — Checkout Page
+    ============================================================ -->
+    <main class="checkout-page">
+
+      <h1>Checkout</h1>
+
+      <!--
+        CHECKOUT FORM SECTION
+        id="checkout-form-section" — JavaScript hides this entire
+        block after a successful order and shows the success message.
+      -->
+      <div id="checkout-form-section">
+
+        <!--
+          TWO-COLUMN LAYOUT WRAPPER
+          On desktop: form on the left, order summary on the right.
+          On mobile: they stack on top of each other.
+        -->
+        <div class="checkout-layout">
+
+          <!-- ======================================================
+            LEFT COLUMN: THE CHECKOUT FORM
+          ====================================================== -->
+          <div class="checkout-left">
+
+            <!--
+              SECTION 1: DELIVERY DETAILS
+              A <section> groups related content together.
+              It has no visual effect on its own — that comes from CSS.
+            -->
+            <section class="checkout-section">
+              <h2>📦 Delivery Details</h2>
+
+              <!--
+                THE CHECKOUT FORM
+                onsubmit calls handleCheckout() from main.js.
+                We use id="checkout-form" so JavaScript can also
+                target this form if needed.
+              -->
+              <form id="checkout-form" onsubmit="handleCheckout(event)">
+
+                <!-- First name and Last name sit side by side -->
+                <div class="form-row">
+
+                  <div class="form-group">
+                    <label for="checkout-firstname">First Name</label>
+                    <input
+                      type="text"
+                      id="checkout-firstname"
+                      name="firstname"
+                      placeholder="John"
+                    />
+                    <span class="form-error" id="error-checkout-firstname"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="checkout-lastname">Last Name</label>
+                    <input
+                      type="text"
+                      id="checkout-lastname"
+                      name="lastname"
+                      placeholder="Doe"
+                    />
+                    <span class="form-error" id="error-checkout-lastname"></span>
+                  </div>
+
+                </div>
+                <!-- End of form-row -->
+
+                <!-- Street Address -->
+                <div class="form-group">
+                  <label for="checkout-address">Street Address</label>
+                  <input
+                    type="text"
+                    id="checkout-address"
+                    name="address"
+                    placeholder="e.g. 12 Main Street, Apt 3B"
+                  />
+                  <span class="form-error" id="error-checkout-address"></span>
+                </div>
+
+                <!-- City and Postcode side by side -->
+                <div class="form-row">
+
+                  <div class="form-group">
+                    <label for="checkout-city">City</label>
+                    <input
+                      type="text"
+                      id="checkout-city"
+                      name="city"
+                      placeholder="e.g. Lagos"
+                    />
+                    <span class="form-error" id="error-checkout-city"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="checkout-postcode">Postcode</label>
+                    <!--
+                      No validation on postcode — it's optional here
+                      to keep the form simple for teaching purposes.
+                    -->
+                    <input
+                      type="text"
+                      id="checkout-postcode"
+                      name="postcode"
+                      placeholder="e.g. 100001"
+                    />
+                  </div>
+
+                </div>
+
+                <!-- Phone number -->
+                <div class="form-group">
+                  <label for="checkout-phone">Phone Number</label>
+                  <!--
+                    type="tel" tells the browser this is a phone number.
+                    On mobile phones, this opens the numeric keyboard.
+                  -->
+                  <input
+                    type="tel"
+                    id="checkout-phone"
+                    name="phone"
+                    placeholder="e.g. +234 800 000 0000"
+                  />
+                </div>
+
+              </form>
+              <!-- We close this form tag AFTER the payment section below -->
+
+            </section>
+            <!-- End of Delivery Details section -->
+
+
+            <!--
+              SECTION 2: PAYMENT DETAILS
+              NOTE: This is for learning only.
+              A real website would use a secure payment provider
+              like Stripe or Paystack — NEVER collect real card
+              details this way in a production website!
+            -->
+            <section class="checkout-section">
+              <h2>💳 Payment Details</h2>
+
+              <p class="checkout-note">
+                ⚠️ This is a demo. Do not enter real card information.
+              </p>
+
+              <!--
+                These inputs are OUTSIDE the <form> tag above.
+                To link them to the form, we use the "form" attribute
+                pointing to the form's id="checkout-form".
+                This is a great HTML teaching point!
+              -->
+
+              <div class="form-group">
+                <label for="checkout-card">Card Number</label>
+                <input
+                  type="text"
+                  id="checkout-card"
+                  name="card"
+                  placeholder="1234 5678 9012 3456"
+                  maxlength="19"
+                  form="checkout-form"
+                />
+                <!--
+                  maxlength="19" limits input to 19 characters.
+                  A card number has 16 digits + 3 spaces = 19 chars.
+                  This is another built-in HTML validation trick!
+                -->
+                <span class="form-error" id="error-checkout-card"></span>
+              </div>
+
+              <div class="form-row">
+
+                <div class="form-group">
+                  <label for="checkout-expiry">Expiry Date</label>
+                  <input
+                    type="text"
+                    id="checkout-expiry"
+                    name="expiry"
+                    placeholder="MM / YY"
+                    maxlength="7"
+                    form="checkout-form"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="checkout-cvv">CVV</label>
+                  <input
+                    type="password"
+                    id="checkout-cvv"
+                    name="cvv"
+                    placeholder="•••"
+                    maxlength="3"
+                    form="checkout-form"
+                  />
+                  <!--
+                    type="password" hides the CVV digits as the user types.
+                    This is the correct approach even for short codes.
+                  -->
+                </div>
+
+              </div>
+
+              <!-- The submit button is linked to form id="checkout-form" -->
+              <button
+                type="submit"
+                class="btn-form-submit"
+                form="checkout-form"
+              >
+                Place Order →
+              </button>
+
+            </section>
+            <!-- End of Payment Details section -->
+
+          </div>
+          <!-- End of checkout-left -->
+
+
+          <!-- ======================================================
+            RIGHT COLUMN: ORDER SUMMARY
+          ====================================================== -->
+          <div class="checkout-right">
+
+            <section class="checkout-section">
+              <h2>🧾 Order Summary</h2>
+
+              <!--
+                JavaScript's renderCheckoutSummary() fills this div
+                with a list of items from the cart, shipping cost,
+                and the total amount due.
+              -->
+              <div id="checkout-order-summary">
+                <p style="color: #6b7280; font-size: 14px;">Loading order summary...</p>
+              </div>
+
+            </section>
+
+            <!-- Secure checkout trust badge -->
+            <div class="trust-badges">
+              <p>🔒 Secure &amp; encrypted checkout</p>
+              <p>📦 Free returns within 30 days</p>
+              <p>✅ Satisfaction guaranteed</p>
+            </div>
+
+          </div>
+          <!-- End of checkout-right -->
+
+        </div>
+        <!-- End of checkout-layout -->
+
+      </div>
+      <!-- End of checkout-form-section -->
+
+
+      <!--
+        ORDER SUCCESS MESSAGE
+        ============================================================
+        This section is hidden (display:none via CSS) by default.
+        After the user places an order, handleCheckout() in main.js:
+        1. Hides the form above (checkout-form-section)
+        2. Makes this success message visible
+
+        This is the "show/hide" pattern — one of the most common
+        JavaScript + CSS techniques in all of web development.
+      -->
+      <div class="order-success" id="order-success">
+
+        <!-- Big success icon -->
+        <div class="success-icon">✅</div>
+
+        <h2>Order Placed Successfully!</h2>
+
+        <p>
+          Thank you for your order. A confirmation has been
+          sent to your email address. Your items will arrive
+          within 3 to 5 business days.
+        </p>
+
+        <!-- Button to go back and keep shopping -->
+        <a href="index.html">Continue Shopping</a>
+
+      </div>
+      <!-- End of order-success -->
+
+    </main>
+
+
+    <!-- ============================================================
+      FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+      <div class="footer-content">
+
+        <div class="footer-brand">
+          <h3>🛍️ zShop</h3>
+          <p>Discover amazing products at unbeatable prices. Gadgets, fashion, home essentials and more — all in one place.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="signin.html">Sign In</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>📧 support@zShop.com</p>
+          <p>📞 +234 8037794810</p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 zShop. Built for the purpose of learning HTML, CSS, and JavaScript + Local Storage as database(backend)</p>
+      </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+    <script>
+      /*
+        Run these two functions as soon as the page and script.js load:
+        1. renderCheckoutSummary() — fills the Order Summary box
+        2. updateCartCount()       — updates the cart badge in the nav
+        Both functions are defined in script.js.
+      */
+      renderCheckoutSummary();
+      updateCartCount();
+    </script>
+
+  </body>
+
+</html>

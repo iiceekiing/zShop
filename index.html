@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- The <head> section contains information ABOUT the page, not visible content -->
+
+    <!-- This tells the browser what characters to use (standard for most languages) -->
+    <meta charset="UTF-8" />
+
+    <!-- This makes the page look correct on mobile phones -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- The title that appears on the browser tab -->
+    <title>zShop</title>
+
+    <!-- 
+      =============================================
+      LINKING THE CSS FILE
+      =============================================
+      This line connects our style.css file to this HTML file.
+      If you REMOVE this line, all the styling (colors, fonts, layout)
+      will disappear and you will see plain HTML — that's great for teaching!
+      The "rel" tells the browser this is a stylesheet.
+      The "href" is the path to the CSS file.
+    -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Font: Nunito (clean, friendly font for a shop) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- 
+      =============================================
+      HEADER SECTION
+      =============================================
+      The <header> tag holds the top part of the page.
+      It usually contains the logo and navigation links.
+    -->
+    <header class="site-header">
+
+      <!-- Logo / Brand name -->
+      <div class="logo">
+        <a href="index.html">🛍️ zShop</a>
+      </div>
+
+      <!-- 
+        NAVIGATION BAR
+        <nav> holds links that help users move between pages.
+        <ul> = unordered list (bullet list)
+        <li> = list item
+        <a>  = anchor tag (a clickable link)
+      -->
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="index.html#products">Products</a></li>
+          <li><a href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a></li>
+          <li><a href="signin.html">Sign In</a></li>
+          <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+        </ul>
+      </nav>
+
+      <!-- Hamburger menu button (visible on small screens) -->
+      <button class="hamburger" id="hamburger-btn">☰</button>
+
+    </header>
+
+    <!-- 
+      =============================================
+      MAIN CONTENT
+      =============================================
+      The <main> tag holds the main content of the page.
+    -->
+    <main>
+
+      <!-- 
+        HERO SECTION
+        This is the big banner at the top of the page.
+        "Hero" is a common web design term for this section.
+      -->
+      <section class="hero">
+        <div class="hero-text">
+          <h1>Welcome to zShop!</h1>
+          <p>Discover amazing products at unbeatable prices. Gadgets, fashion, home essentials and more — all in one place.</p>
+          <a href="#products" class="btn-hero">Shop Now</a>
+        </div>
+        <div class="hero-image">
+          <!-- 
+            SVG PLACEHOLDER IMAGE
+            SVG stands for Scalable Vector Graphic. 
+            This is a built-in image made with code.
+            You can replace this with a real <img> tag later.
+          -->
+
+          <img src="./assets/images/hero-image.webp" alt="Hero Image">
+        </div>
+      </section>
+
+      <!-- 
+        =============================================
+        CATEGORIES SECTION
+        =============================================
+        Quick category links to help users find items faster.
+      -->
+      <section class="categories">
+        <h2>Browse by Category</h2>
+        <div class="category-list">
+
+          <div class="category-card">
+            <span class="category-icon">📱</span>
+            <p>Gadgets</p>
+          </div>
+
+          <div class="category-card">
+            <span class="category-icon">👗</span>
+            <p>Fashion</p>
+          </div>
+
+          <div class="category-card">
+            <span class="category-icon">🏠</span>
+            <p>Home</p>
+          </div>
+
+          <div class="category-card">
+            <span class="category-icon">📚</span>
+            <p>Books</p>
+          </div>
+
+          <div class="category-card">
+            <span class="category-icon">⚽</span>
+            <p>Sports</p>
+          </div>
+
+          <div class="category-card">
+            <span class="category-icon">💄</span>
+            <p>Beauty</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 
+        =============================================
+        PRODUCTS SECTION
+        =============================================
+        The "id" attribute is used to jump to this section when
+        someone clicks "Shop Now" or "Products" in the nav.
+        #products in a link means "go to the element with id=products".
+      -->
+      <section class="products-section" id="products">
+        <h2>Our Products</h2>
+        <p class="section-subtitle">Hand-picked items just for you</p>
+
+        <!-- 
+          PRODUCT GRID
+          Each "product-card" is one product.
+          They all sit inside "product-grid" which lines them up.
+        -->
+        <div class="product-grid">
+
+          <!-- ===== PRODUCT 1: Wireless Earbuds ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/wireless-earbud-pro.webp" alt="Wireless Earbuds Pro">
+              <svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" width="200" height="180">
+                <rect width="200" height="180" fill="#e8f0fe" rx="10" />
+                <circle cx="70" cy="90" r="28" fill="#4f6ef7" />
+                <circle cx="130" cy="90" r="28" fill="#4f6ef7" />
+                <circle cx="70" cy="90" r="14" fill="#1a3ec4" />
+                <circle cx="130" cy="90" r="14" fill="#1a3ec4" />
+                <line x1="70" y1="62" x2="70" y2="40" stroke="#4f6ef7" stroke-width="4" />
+                <line x1="130" y1="62" x2="130" y2="40" stroke="#4f6ef7" stroke-width="4" />
+                <text x="100" y="160" text-anchor="middle" fill="#4f6ef7" font-size="11">Wireless Earbuds</text>
+              </svg>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Wireless Earbuds Pro</h3>
+              <p class="product-description">Noise cancelling, 24hr battery life. Crystal clear sound.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(128 reviews)</span>
+              </div>
+              <p class="product-price">$29.99</p>
+              <!-- 
+                The "data-" attributes store information about the product.
+                JavaScript will read these values when "Add to Cart" is clicked.
+              -->
+              <button
+                class="btn-add-to-cart"
+                data-id="1"
+                data-name="Wireless Earbuds Pro"
+                data-price="29.99"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+
+
+
+          
+          <!-- ===== PRODUCT 2: Smart Watch ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/smart-watch.webp" alt="">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Smart Watch X200</h3>
+              <p class="product-description">Track fitness, notifications & sleep. Water resistant.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="review-count">(94 reviews)</span>
+              </div>
+              <p class="product-price">$49.99</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="2"
+                data-name="Smart Watch X200"
+                data-price="49.99"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== PRODUCT 3: Running Shoes ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/AeroRun-Shoes.webp" alt="">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">AeroRun Shoes</h3>
+              <p class="product-description">Lightweight foam sole. Breathable mesh upper. Sizes 36–46.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(212 reviews)</span>
+              </div>
+              <p class="product-price">$39.99</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="3"
+                data-name="AeroRun Shoes"
+                data-price="39.99"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+
+          <!-- ===== PRODUCT 4 : Wireless Earbuds ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/airpods_pro_3.webp" alt="Wireless Earbuds Pro">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Wireless Earbuds Pro</h3>
+              <p class="product-description">Noise cancelling, 48hr battery life. Crystal clear sound.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(280 reviews)</span>
+              </div>
+              <p class="product-price">$45.00</p>
+              <!-- 
+                The "data-" attributes store information about the product.
+                JavaScript will read these values when "Add to Cart" is clicked.
+              -->
+              <button
+                class="btn-add-to-cart"
+                data-id="1"
+                data-name="Wireless Earbuds Pro"
+                data-price="45.00"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+
+
+          <!-- ===== PRODUCT 4: LED Desk Lamp ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/LED-Desk-Lamp.webp" alt="LED Desk Lamp">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">LED Desk Lamp</h3>
+              <p class="product-description">3 brightness levels, USB charging port, eye-care light.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="review-count">(87 reviews)</span>
+              </div>
+              <p class="product-price">$21.99</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="4"
+                data-name="LED Desk Lamp"
+                data-price="21.99"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+
+
+          
+          <!-- ===== PRODUCT 2: Smart Watch ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/smart-watch5.webp" alt="Smart Watch">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Smart Watch</h3>
+              <p class="product-description">Track fitness, notifications & sleep. Water resistant.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="review-count">(120 reviews)</span>
+              </div>
+              <p class="product-price">$19.00</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="2"
+                data-name="Smart Watch"
+                data-price="19.00"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+
+
+
+          <!-- ===== PRODUCT 5: Backpack ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/urban-explorer-backpack4.webp" alt="Urban Explorer Backpack">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Urban Explorer Backpack</h3>
+              <p class="product-description">30L capacity. Laptop sleeve. Waterproof zips. Durable.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(185 reviews)</span>
+              </div>
+              <p class="product-price">$34.00</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="5"
+                data-name="Urban Explorer Backpack"
+                data-price="34.00"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== PRODUCT 6: Face Moisturiser ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/glow-face-moisturiser5.webp" alt="Glow Face Moisturiser">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Glow Face Moisturiser</h3>
+              <p class="product-description">SPF 30, hydrating formula. Suitable for all skin types.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="review-count">(310 reviews)</span>
+              </div>
+              <p class="product-price">$14.99</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="6"
+                data-name="Glow Face Moisturiser"
+                data-price="14.99"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== PRODUCT 7: Bluetooth Speaker ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/bassBox-bluetooth-speaker6.webp" alt="BassBox Bluetooth Speaker">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">BassBox Bluetooth Speaker</h3>
+              <p class="product-description">360° surround sound, 12hr battery. IPX5 water resistant.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(402 reviews)</span>
+              </div>
+              <p class="product-price">$74.40</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="7"
+                data-name="BassBox Bluetooth Speaker"
+                data-price="74.40"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+
+
+
+          
+          <!-- ===== PRODUCT 2: Smart Watch ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/smart-watch2.webp" alt="">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Smart Watch X200</h3>
+              <p class="product-description">Track fitness, notifications & sleep. Water resistant.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="review-count">(94 reviews)</span>
+              </div>
+              <p class="product-price">$30.40</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="2"
+                data-name="Smart Watch X200"
+                data-price="30.40"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+
+
+
+          <!-- ===== PRODUCT 8: Notebook Set ===== -->
+          <div class="product-card">
+            <div class="product-image">
+                <img src="./assets/images/premium-notebook-set8.webp" alt="Premium Notebook Set">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Premium Notebook Set</h3>
+              <p class="product-description">Set of 3 lined notebooks. 200 pages each. Hardcover.</p>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="review-count">(56 reviews)</span>
+              </div>
+              <p class="product-price">$12.99</p>
+              <button
+                class="btn-add-to-cart"
+                data-id="8"
+                data-name="Premium Notebook Set"
+                data-price="12.99"
+                onclick="addToCart(this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <!-- End of product-grid -->
+
+      </section>
+      <!-- End of products-section -->
+
+      <!-- 
+        =============================================
+        BANNER / PROMO SECTION
+        =============================================
+      -->
+      <section class="promo-banner">
+        <div class="promo-content">
+          <h2>📦 Free Shipping on Orders Over $20!</h2>
+          <p>Use code <strong>zShop2026</strong> at checkout for an extra 10% off your first order.</p>
+          <a href="signup.html" class="btn-promo">Create Free Account</a>
+        </div>
+      </section>
+
+    </main>
+    <!-- End of main -->
+
+    <!-- 
+      =============================================
+      FOOTER SECTION
+      =============================================
+      The <footer> tag holds information at the bottom of the page.
+    -->
+    <footer class="site-footer">
+      <div class="footer-content">
+
+        <div class="footer-brand">
+          <h3>🛍️ zShop</h3>
+          <p>Simple e-commerce website built with: HTML, CSS, and JavaScript + Local Storage as database(backend)</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="signin.html">Sign In</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>📧 support@zShop.com</p>
+          <p>📞 +234 8037794810 </p>
+        </div>
+
+      </div>
+
+      <!-- Copyright line at the very bottom -->
+      <div class="footer-bottom">
+        <p>© 2026 zShop. Built for the purpose of learning HTML, CSS, and JavaScript + Local Storage as database(backend).</p>
+      </div>
+
+    </footer>
+
+    <!-- 
+      =============================================
+      A small toast notification (pops up when item added to cart)
+      This is hidden by default. JavaScript will show it.
+    -->
+    <div class="toast" id="toast-message">
+      Item added to cart! 🛒
+    </div>
+
+    <!-- 
+      =============================================
+      LINKING THE JAVASCRIPT FILE
+      =============================================
+      This connects our main.js file.
+      It goes at the BOTTOM of the body so the HTML loads first.
+      If you REMOVE this line, buttons won't work.
+      The "defer" keyword means: wait for HTML to load, then run JS.
+    -->
+    <script src="script.js"></script>
+
+  </body>
+
+</html>

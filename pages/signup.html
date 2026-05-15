@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Information about the page — not visible to the user -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up — zShop</title>
+
+    <!-- Link to our shared stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+
+    <!-- ============================================================
+      HEADER
+      Same header as index.html so navigation is consistent
+      across every page on the site.
+    ============================================================ -->
+    <header class="site-header">
+
+      <div class="logo">
+        <a href="index.html">🛍️ zShop</a>
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#products">Products</a></li>
+          <li><a href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a></li>
+          <li><a href="signin.html">Sign In</a></li>
+          <li><a href="signup.html" class="btn-signup active">Sign Up</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger-btn">☰</button>
+
+    </header>
+
+
+    <!-- ============================================================
+      MAIN CONTENT
+      The "form-page" class centres everything vertically
+      and horizontally on the screen (see style.css Section 11).
+    ============================================================ -->
+    <main class="form-page">
+
+      <!-- 
+        SIGN UP CARD
+        This white box holds the entire registration form.
+        The class "form-card" is styled in style.css.
+      -->
+      <div class="form-card">
+
+        <!-- Page heading and subtitle -->
+        <h1>Create an Account</h1>
+        <p class="form-subtitle">Join zShop today — it's completely free!</p>
+
+        <!-- 
+          THE SIGN UP FORM
+          ============================================================
+          <form> groups all the inputs together.
+
+          onsubmit="handleSignUp(event)"
+          — When the user clicks Submit, call handleSignUp() in main.js.
+          — We pass "event" so the JS can use event.preventDefault()
+            to stop the page from refreshing.
+
+          The "action" attribute is where the form data would go in a
+          real website (a server URL). Since we have no server, we
+          handle everything with JavaScript instead.
+          ============================================================
+        -->
+        <form onsubmit="handleSignUp(event)">
+
+          <!-- ===== FULL NAME ===== -->
+          <div class="form-group">
+            <!--
+              <label> describes the input below it.
+              "for" connects the label to the input using the input's "id".
+              Clicking the label will focus the input — great for usability!
+            -->
+            <label for="signup-name">Full Name</label>
+
+            <!--
+              <input> is where the user types.
+              type="text"     — accepts any text
+              id="signup-name" — used by the label and by JavaScript
+              name="name"     — the field name (used in real form submissions)
+              placeholder     — grey hint text shown before the user types
+            -->
+            <input
+              type="text"
+              id="signup-name"
+              name="name"
+              placeholder="e.g. iiceekiing"
+            />
+
+            <!-- 
+              Error message for this field.
+              It is hidden (display:none) by default.
+              JavaScript will make it visible if validation fails.
+            -->
+            <span class="form-error" id="error-name"></span>
+          </div>
+
+          <!-- ===== EMAIL ADDRESS ===== -->
+          <div class="form-group">
+            <label for="signup-email">Email Address</label>
+
+            <!--
+              type="email" tells the browser this should be an email.
+              The browser will warn the user if they forget the "@" symbol.
+            -->
+            <input
+              type="email"
+              id="signup-email"
+              name="email"
+              placeholder="e.g. iiceekiing@example.com"
+            />
+
+            <span class="form-error" id="error-email"></span>
+          </div>
+
+          <!-- ===== PASSWORD ===== -->
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+
+            <!--
+              type="password" hides the characters as the user types.
+              The browser shows dots or asterisks instead of letters.
+            -->
+            <input
+              type="password"
+              id="signup-password"
+              name="password"
+              placeholder="At least 6 characters"
+            />
+
+            <span class="form-error" id="error-password"></span>
+          </div>
+
+          <!-- ===== CONFIRM PASSWORD ===== -->
+          <div class="form-group">
+            <label for="signup-confirm">Confirm Password</label>
+
+            <input
+              type="password"
+              id="signup-confirm"
+              name="confirm"
+              placeholder="Type your password again"
+            />
+
+            <span class="form-error" id="error-confirm"></span>
+          </div>
+
+          <!-- ===== TERMS & CONDITIONS CHECKBOX ===== -->
+          <div class="form-group checkbox-group">
+            <!--
+              type="checkbox" creates a tick box.
+              The user must tick it before they can submit.
+              "required" is a built-in HTML attribute — the browser
+              will block submission if this box is not ticked.
+              No JavaScript needed for this one!
+            -->
+            <input
+              type="checkbox"
+              id="signup-terms"
+              name="terms"
+              required
+            />
+            <label for="signup-terms" class="checkbox-label">
+              I agree to the
+              <a href="#">Terms &amp; Conditions</a>
+              and
+              <a href="#">Privacy Policy</a>
+            </label>
+          </div>
+
+          <!-- ===== SUBMIT BUTTON ===== -->
+          <!--
+            type="submit" tells the browser this button submits the form.
+            Clicking it triggers the form's onsubmit event.
+          -->
+          <button type="submit" class="btn-form-submit">
+            Create My Account
+          </button>
+
+        </form>
+        <!-- End of form -->
+
+        <!-- Divider line -->
+        <div class="divider">or</div>
+
+        <!-- Link to sign in page -->
+        <p class="form-switch-text">
+          Already have an account?
+          <a href="signin.html">Sign In here</a>
+        </p>
+
+        <!-- Link back to homepage -->
+        <p class="form-switch-text" style="margin-top: 10px;">
+          <a href="index.html">← Back to Shop</a>
+        </p>
+
+      </div>
+      <!-- End of form-card -->
+
+    </main>
+
+
+    <!-- ============================================================
+      FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+      <div class="footer-content">
+
+        <div class="footer-brand">
+          <h3>🛍️ zShop</h3>
+          <p>.© 2026 zShop. Built for the purpose of learning HTML, CSS, and JavaScript + Local Storage as database(backend)</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="signin.html">Sign In</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>📧 support@zShop.com</p>
+          <p>📞 +234 8037794810 </p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 zShop. Built for the purpose of learning HTML, CSS, and JavaScript + Local Storage as database(backend).</p>
+      </div>
+    </footer>
+
+
+    <!-- ============================================================
+      JAVASCRIPT — linked at the bottom so HTML loads first
+    ============================================================ -->
+    <script src="script.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart — zShop</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+
+    <!-- ============================================================
+      HEADER
+    ============================================================ -->
+    <header class="site-header">
+
+      <div class="logo">
+        <a href="index.html">🛍️ zShop</a>
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#products">Products</a></li>
+          <li><a href="cart.html" class="active">🛒 Cart (<span id="cart-count">0</span>)</a></li>
+          <li><a href="signin.html">Sign In</a></li>
+          <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger-btn">☰</button>
+
+    </header>
+
+
+    <!-- ============================================================
+      MAIN — Cart Page Layout
+    ============================================================ -->
+    <main class="cart-page">
+
+      <h1>🛒 Your Shopping Cart</h1>
+
+      <!--
+        CART ITEMS CONTAINER
+        ============================================================
+        This <div> starts empty.
+        JavaScript's renderCart() function reads localStorage and
+        builds all the cart item HTML and injects it here using
+        innerHTML. This is called "dynamic rendering".
+
+        id="cart-items-container" — JavaScript finds this element
+        by its id to know where to put the cart items.
+      -->
+      <div id="cart-items-container">
+
+        <!--
+          JavaScript will fill this area.
+          If the cart is empty, it shows a friendly message.
+          If there are items, it lists them all here.
+
+          We show a loading message as a placeholder before JS runs.
+        -->
+        <div class="cart-empty-message">
+          <p>Loading your cart...</p>
+        </div>
+
+      </div>
+
+
+      <!--
+        CART SUMMARY BOX
+        ============================================================
+        Shows subtotal, shipping cost, and the grand total.
+        Also contains the "Proceed to Checkout" button.
+
+        JavaScript's renderCartSummary() fills this with content.
+        If the cart is empty, JavaScript hides this entire box.
+      -->
+      <div id="cart-summary" class="cart-summary">
+        <!-- JavaScript will fill this in -->
+      </div>
+
+
+      <!-- Link to keep shopping -->
+      <p class="continue-shopping">
+        <a href="index.html">← Continue Shopping</a>
+      </p>
+
+    </main>
+
+
+    <!-- ============================================================
+      FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+      <div class="footer-content">
+
+        <div class="footer-brand">
+          <h3>🛍️ zShop</h3>
+          <p>.© 2026 zShop. Built for the purpose of learning HTML, CSS, and JavaScript + Local Storage as database(backend)</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="signin.html">Sign In</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>📧 support@zshop.com</p>
+          <p>📞 +234 8037794810</p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 zShop. Built for the purpose of learning HTML, CSS, and JavaScript + Local Storage as database(backend)</p>
+      </div>
+    </footer>
+
+
+    <!-- ============================================================
+      JAVASCRIPT
+      ============================================================
+      The script tag is at the bottom so all HTML loads first.
+      After main.js loads, we immediately call renderCart() to
+      populate the cart items container above.
+    -->
+    <script src="script.js"></script>
+
+    <script>
+      /*
+        This small inline script runs right after main.js loads.
+        It calls renderCart() which is defined in main.js.
+        This triggers the cart page to display its items.
+
+        We could put this call inside main.js too, but keeping it
+        here makes it clear: "this page needs the cart rendered".
+        It is a great teaching point — HTML pages can have
+        BOTH an external JS file AND a small inline <script> block.
+      */
+      renderCart();
+    </script>
+
+  </body>
+
+</html>
